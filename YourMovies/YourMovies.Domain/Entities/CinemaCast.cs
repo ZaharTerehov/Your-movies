@@ -9,8 +9,11 @@ namespace YourMovies.Domain.Entities
 
         decimal CastOrder { get; set; }
 
-        public CinemaCast(Guid id) : base(id)
+        public CinemaCast(Guid id, Person person, string characterName, decimal castOrder) : base(id)
         {
+            Person = person;
+            CharacterName = characterName;
+            CastOrder = castOrder;
         }
     }
 }

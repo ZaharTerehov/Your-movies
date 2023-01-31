@@ -9,8 +9,11 @@ namespace YourMovies.Domain.Entities
 
         string Job { get; set; }
 
-        public CinemaCrew(Guid id) : base(id)
+        public CinemaCrew(Guid id, Person person, Department department, string job) : base(id)
         {
+            Person = person;
+            Department = department;
+            Job = job;
         }
     }
 }

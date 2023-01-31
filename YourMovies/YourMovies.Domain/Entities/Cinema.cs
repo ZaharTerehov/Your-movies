@@ -27,8 +27,23 @@ namespace YourMovies.Domain.Entities
 
         public decimal FilmBudget { get; set; }
 
-        public Cinema(Guid id) : base(id)
+        public Cinema(Guid id, AgeRating ageRating, TypeCinema typeCinema, Ganre ganre,
+            Country country, ProductionCompany productionCompany, CinemaCast cinemaCast,
+            CinemaCrew cinemaCrew, string name, string description, DateTime releaseDate,
+            string mainImage, decimal filmBudget) : base(id)
         {
+            AgeRating = ageRating;
+            TypeCinema = typeCinema;
+            Ganre = ganre;
+            Country = country;
+            ProductionCompany = productionCompany;
+            CinemaCast = cinemaCast;
+            CinemaCrew = cinemaCrew;
+            Name = name;
+            Description = description;
+            ReleaseDate = releaseDate;
+            MainImage = mainImage;
+            FilmBudget = filmBudget;
         }
     }
 }

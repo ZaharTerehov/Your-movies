@@ -7,8 +7,10 @@ namespace YourMovies.Domain.Entities
 
         public string Surname { get; set; }
 
-        public Person(Guid id) : base(id)
+        public Person(Guid id, string name, string surname) : base(id)
         {
+            Name = name;
+            Surname = surname;
         }
     }
 }

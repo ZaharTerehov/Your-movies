@@ -5,8 +5,9 @@ namespace YourMovies.Domain.Entities
     {
         public string Name { get; set; }
 
-        public Department(Guid id) : base(id)
+        public Department(Guid id, string name) : base(id)
         {
+            Name = name;
         }
     }
 }
