@@ -3,17 +3,31 @@ namespace YourMovies.Domain.Entities
 {
     public class CinemaCast : Entity
     {
-        Person Person { get; set; }
+        public Person Person { get; set; }
 
-        string CharacterName { get; set; }
+        public string CharacterName { get; set; }
 
-        decimal CastOrder { get; set; }
+        public decimal CastOrder { get; set; }
 
-        public CinemaCast(Guid id, Person person, string characterName, decimal castOrder) : base(id)
+        public void UpdateDetails(CinemaCastDetails details)
         {
-            Person = person;
-            CharacterName = characterName;
-            CastOrder = castOrder;
+            Person = details.Person;
+            CharacterName = details.CharacterName;
+            CastOrder = details.CastOrder;
+        }
+
+        public readonly record struct CinemaCastDetails
+        {
+            public Person Person { get; }
+            public string CharacterName { get; }
+            public decimal CastOrder { get; }
+
+            public CinemaCastDetails(Person person, string characterName, decimal castOrder)
+            {
+                Person = person;
+                CharacterName = characterName;
+                CastOrder = castOrder;
+            }
         }
     }
 }

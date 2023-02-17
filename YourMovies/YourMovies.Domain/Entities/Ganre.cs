@@ -3,14 +3,27 @@ namespace YourMovies.Domain.Entities
 {
     public class Ganre : Entity
     {
-        string Name { get; set; }
+        public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public Ganre(Guid id, string name, string description) : base(id)
+        public void UpdateDetails(GanreDetails details)
         {
-            Name = name;
-            Description = description;
+            Name = details.Name;
+            Description = details.Description;
+        }
+
+        public readonly record struct GanreDetails
+        {
+            public string Name { get; }
+
+            public string Description { get; }
+
+            public GanreDetails(string name, string description)
+            {
+                Name = name;
+                Description = description;
+            }
         }
     }
 }

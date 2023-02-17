@@ -3,11 +3,8 @@ namespace YourMovies.Domain.Entities
 {
     public abstract class Entity
     {
-        public virtual Guid Id { get; protected set;}
-
-        public Entity(Guid id)
-        {
-            Id = id;
-        }
+        public Guid Id { get; set;}
+        public DateTime? DateCreated { get; set; }
+        public DateTime? DateUpdated { get; set; }
     }
 }

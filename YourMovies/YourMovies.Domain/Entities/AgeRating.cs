@@ -3,17 +3,31 @@ namespace YourMovies.Domain.Entities
 {
     public class AgeRating : Entity
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public string ViewAge { get; private set; }
+        public string ViewAge { get; set; }
 
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
-        public AgeRating(Guid id, string name, string viewAge, string desctiption) : base(id)
+        public void UpdateDatails(AgeRatingDetails details)
         {
-            Name = name;
-            ViewAge = viewAge;
-            Description = desctiption;
+            Name = details.Name;
+            ViewAge = details.ViewAge;
+            Description = details.Description;
+        }
+
+        public readonly record struct AgeRatingDetails
+        {
+            public string Name { get; }
+            public string ViewAge { get; }
+            public string Description { get; }
+
+            public AgeRatingDetails(string name, string viewAge, string desctiption)
+            {
+                Name = name;
+                ViewAge = viewAge;
+                Description = desctiption;
+            }
         }
     }
 }

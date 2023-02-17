@@ -5,9 +5,19 @@ namespace YourMovies.Domain.Entities
     {
         public string Name { get; set; }
 
-        public ProductionCompany(Guid id, string name) : base(id)
+        public void UpdateDetails(ProductionCompanyDetails details)
         {
-            Name = name;
+            Name = details.Name;
+        }
+
+        public readonly record struct ProductionCompanyDetails
+        {
+            public string Name { get; }
+
+            public ProductionCompanyDetails(string name)
+            {
+                Name = name;
+            }
         }
     }
 }

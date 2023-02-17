@@ -27,23 +27,67 @@ namespace YourMovies.Domain.Entities
 
         public decimal FilmBudget { get; set; }
 
-        public Cinema(Guid id, AgeRating ageRating, TypeCinema typeCinema, Ganre ganre,
-            Country country, ProductionCompany productionCompany, CinemaCast cinemaCast,
-            CinemaCrew cinemaCrew, string name, string description, DateTime releaseDate,
-            string mainImage, decimal filmBudget) : base(id)
+        public void UpdateDatails(CinemaDetails details)
         {
-            AgeRating = ageRating;
-            TypeCinema = typeCinema;
-            Ganre = ganre;
-            Country = country;
-            ProductionCompany = productionCompany;
-            CinemaCast = cinemaCast;
-            CinemaCrew = cinemaCrew;
-            Name = name;
-            Description = description;
-            ReleaseDate = releaseDate;
-            MainImage = mainImage;
-            FilmBudget = filmBudget;
+            AgeRating = details.AgeRating;
+            TypeCinema = details.TypeCinema;
+            Ganre = details.Ganre;
+            Country = details.Country;
+            ProductionCompany = details.ProductionCompany;
+            CinemaCast = details.CinemaCast;
+            CinemaCrew = details.CinemaCrew;
+            Name = details.Name;
+            Description = details.Description;
+            ReleaseDate = details.ReleaseDate;
+            MainImage = details.MainImage;
+            FilmBudget = details.FilmBudget;
+        }
+
+        public readonly record struct CinemaDetails
+        {
+            public AgeRating AgeRating { get; }
+
+            public TypeCinema TypeCinema { get; }
+
+            public Ganre Ganre { get; }
+
+            public Country Country { get; }
+
+            public ProductionCompany ProductionCompany { get; }
+
+            public CinemaCast CinemaCast { get; }
+
+            public CinemaCrew CinemaCrew { get; }
+
+            public string Name { get; }
+
+            public string Description { get; }
+
+            public DateTime ReleaseDate { get; }
+
+            public string MainImage { get; }
+
+            public decimal FilmBudget { get; }
+
+            public CinemaDetails(AgeRating ageRating, TypeCinema typeCinema,
+                Ganre ganre, Country country, ProductionCompany productionCompany,
+                CinemaCast cinemaCast, CinemaCrew cinemaCrew, string name,
+                string description, DateTime releaseDate, string mainImage,
+                decimal filmBudget)
+            {
+                AgeRating = ageRating;
+                TypeCinema = typeCinema;
+                Ganre = ganre;
+                Country = country;
+                ProductionCompany = productionCompany;
+                CinemaCast = cinemaCast;
+                CinemaCrew = cinemaCrew;
+                Name = name;
+                Description = description;
+                ReleaseDate = releaseDate;
+                MainImage = mainImage;
+                FilmBudget = filmBudget;
+            }
         }
     }
 }

@@ -3,15 +3,28 @@ namespace YourMovies.Domain.Entities
 {
     public class Country : Entity
     {
-        string ISOCode { get; set; }
+        public string ISOCode { get; set; }
 
-        string Name { get; set; }
+        public string Name { get; set; }
 
 
-        public Country(Guid id, string iSOCode, string name) : base(id)
+        public void UpdateDetails(CountryDetails details)
         {
-            ISOCode = iSOCode;
-            Name = name;
+            ISOCode = details.ISOCode;
+            Name = details.Name;
+        }
+
+        public readonly record struct CountryDetails
+        {
+            public string ISOCode { get; }
+
+            public string Name { get; }
+
+            public CountryDetails(string iSOCode, string name)
+            {
+                ISOCode = iSOCode;
+                Name = name;
+            }
         }
     }
 }
