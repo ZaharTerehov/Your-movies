@@ -15,7 +15,7 @@ namespace YourMovies.Domain.Entities
 
         public CinemaCast CinemaCast { get; set; }
 
-        public CinemaCrew CinemaCrew { get; set; }
+        public CinemaCrew? CinemaCrew { get; set; }
 
         public string Name { get; set; }
 
