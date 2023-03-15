@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YourMovies.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using YourMovies.Infrastructure.Data;
 namespace YourMovies.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(YourMoviesContext))]
-    partial class YourMoviesContextModelSnapshot : ModelSnapshot
+    [Migration("20230306090322_FixEntity")]
+    partial class FixEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,10 +130,11 @@ namespace YourMovies.Infrastructure.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal?>("CastOrder")
+                    b.Property<decimal>("CastOrder")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CharacterName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DateCreated")
@@ -143,8 +147,6 @@ namespace YourMovies.Infrastructure.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
 
                     b.ToTable("CinemaCast");
                 });
@@ -373,17 +375,6 @@ namespace YourMovies.Infrastructure.Data.Migrations
                     b.Navigation("ProductionCompany");
 
                     b.Navigation("TypeCinema");
-                });
-
-            modelBuilder.Entity("YourMovies.Domain.Entities.CinemaCast", b =>
-                {
-                    b.HasOne("YourMovies.Domain.Entities.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("YourMovies.Domain.Entities.CinemaCrew", b =>

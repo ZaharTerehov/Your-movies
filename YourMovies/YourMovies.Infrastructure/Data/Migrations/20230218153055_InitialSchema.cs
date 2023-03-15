@@ -175,7 +175,7 @@ namespace YourMovies.Infrastructure.Data.Migrations
                     CountryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductionCompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CinemaCastId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CinemaCrewId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CinemaCrewId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -203,8 +203,7 @@ namespace YourMovies.Infrastructure.Data.Migrations
                         name: "FK_Cinema_CinemaCrew_CinemaCrewId",
                         column: x => x.CinemaCrewId,
                         principalTable: "CinemaCrew",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Cinema_Countries_CountryId",
                         column: x => x.CountryId,

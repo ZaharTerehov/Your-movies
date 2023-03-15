@@ -12,7 +12,7 @@ using YourMovies.Infrastructure.Data;
 namespace YourMovies.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(YourMoviesContext))]
-    [Migration("20230217080408_InitialSchema")]
+    [Migration("20230218153055_InitialSchema")]
     partial class InitialSchema
     {
         /// <inheritdoc />
@@ -66,7 +66,7 @@ namespace YourMovies.Infrastructure.Data.Migrations
                     b.Property<Guid>("CinemaCastId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CinemaCrewId")
+                    b.Property<Guid?>("CinemaCrewId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CountryId")
@@ -338,9 +338,7 @@ namespace YourMovies.Infrastructure.Data.Migrations
 
                     b.HasOne("YourMovies.Domain.Entities.CinemaCrew", "CinemaCrew")
                         .WithMany()
-                        .HasForeignKey("CinemaCrewId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CinemaCrewId");
 
                     b.HasOne("YourMovies.Domain.Entities.Country", "Country")
                         .WithMany()
