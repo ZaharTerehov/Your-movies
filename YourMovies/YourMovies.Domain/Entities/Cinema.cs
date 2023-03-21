@@ -3,19 +3,25 @@ namespace YourMovies.Domain.Entities
 {
     public class Cinema : Entity
     {
-        public AgeRating AgeRating {get; set;} 
+        public AgeRating? AgeRating {get; set;} 
 
-        public TypeCinema TypeCinema { get; set;}
+        public Guid AgeRatingId {get; set;} 
 
-        public Ganre Ganre { get; set;}
+        public TypeCinema? TypeCinema { get; set;}
 
-        public Country Country { get; set; }
+        public Guid TypeCinemaId { get; set;}
 
-        public ProductionCompany ProductionCompany { get; set; }
+        public Ganre? Ganre { get; set;}
 
-        public CinemaCast CinemaCast { get; set; }
+        public Guid GanreId { get; set;}
 
-        public CinemaCrew? CinemaCrew { get; set; }
+        public Country? Country { get; set; }
+
+        public Guid CountryId { get; set; }
+
+        public ProductionCompany? ProductionCompany { get; set; }
+
+        public Guid ProductionCompanyId { get; set; }
 
         public string Name { get; set; }
 
@@ -30,12 +36,15 @@ namespace YourMovies.Domain.Entities
         public void UpdateDatails(CinemaDetails details)
         {
             AgeRating = details.AgeRating;
+            AgeRatingId = details.AgeRatingId;
             TypeCinema = details.TypeCinema;
+            TypeCinemaId = details.TypeCinemaId;
             Ganre = details.Ganre;
+            GanreId = details.GanreId;
             Country = details.Country;
+            CountryId = details.CountryId;
             ProductionCompany = details.ProductionCompany;
-            CinemaCast = details.CinemaCast;
-            CinemaCrew = details.CinemaCrew;
+            ProductionCompanyId = details.ProductionCompanyId;
             Name = details.Name;
             Description = details.Description;
             ReleaseDate = details.ReleaseDate;
@@ -47,17 +56,23 @@ namespace YourMovies.Domain.Entities
         {
             public AgeRating AgeRating { get; }
 
+            public Guid AgeRatingId { get; }
+
             public TypeCinema TypeCinema { get; }
+
+            public Guid TypeCinemaId { get; }
 
             public Ganre Ganre { get; }
 
+            public Guid GanreId { get; }
+
             public Country Country { get; }
+
+            public Guid CountryId { get; }
 
             public ProductionCompany ProductionCompany { get; }
 
-            public CinemaCast CinemaCast { get; }
-
-            public CinemaCrew CinemaCrew { get; }
+            public Guid ProductionCompanyId { get; }
 
             public string Name { get; }
 
@@ -69,19 +84,21 @@ namespace YourMovies.Domain.Entities
 
             public decimal FilmBudget { get; }
 
-            public CinemaDetails(AgeRating ageRating, TypeCinema typeCinema,
-                Ganre ganre, Country country, ProductionCompany productionCompany,
-                CinemaCast cinemaCast, CinemaCrew cinemaCrew, string name,
-                string description, DateTime releaseDate, string mainImage,
+            public CinemaDetails(AgeRating ageRating, Guid ageRatingId, TypeCinema typeCinema, Guid typeCinemaId,
+                Ganre ganre, Guid ganreId, Country country, Guid countryId, ProductionCompany productionCompany,
+                Guid productionCompanyId, string name, string description, DateTime releaseDate, string mainImage, 
                 decimal filmBudget)
             {
                 AgeRating = ageRating;
+                AgeRatingId = ageRatingId;
                 TypeCinema = typeCinema;
+                TypeCinemaId = typeCinemaId;
                 Ganre = ganre;
+                GanreId = ganreId;
                 Country = country;
+                CountryId = countryId;
                 ProductionCompany = productionCompany;
-                CinemaCast = cinemaCast;
-                CinemaCrew = cinemaCrew;
+                ProductionCompanyId = productionCompanyId;
                 Name = name;
                 Description = description;
                 ReleaseDate = releaseDate;
