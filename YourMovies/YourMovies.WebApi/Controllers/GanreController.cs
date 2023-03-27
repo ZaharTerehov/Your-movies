@@ -5,7 +5,7 @@ using YourMovies.Domain.Interfaces;
 namespace YourMovies.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GanreController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -15,22 +15,11 @@ namespace YourMovies.WebApi.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        private static readonly IEnumerable<Ganre> Items = new[]
-        {
-            new Ganre {Name = "Test Name", Description = "Test Description"},
-            new Ganre {Name = "Test Name", Description = "Test Description"},
-            new Ganre {Name = "Test Name", Description = "Test Description"},
-            new Ganre {Name = "Test Name", Description = "Test Description"},
-            new Ganre {Name = "Test Name", Description = "Test Description"},
-            new Ganre {Name = "Test Name", Description = "Test Description"},
-            new Ganre {Name = "Test Name", Description = "Test Description"},
-        };
-
         [HttpGet]
         [Route("GetGanre")]
-        public IEnumerable<Ganre> Get()
+        public async Task<IActionResult> Get()
         {
-            return Items;
+            return Ok(await _unitOfWork.Ganres.GetAllAsync());
         }
 
         [HttpGet]
@@ -45,9 +34,9 @@ namespace YourMovies.WebApi.Controllers
         [Route("AddGanre")]
         public async Task<IActionResult> Post(Ganre ganre)
         {
-            var result = _unitOfWork.Ganres.CreateAsync(ganre);
+            var result = await _unitOfWork.Ganres.CreateAsync(ganre);
 
-            if (result.Id == 0)
+            if (result.Id == null)
                 return StatusCode(StatusCodes.Status500InternalServerError, "Somthing went wrong");
             return Ok("Added successfully");
         }
@@ -72,10 +61,11 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteGanre")]
-        public JsonResult Delete(Guid id)
+        [Route("DeleteGanre/{id}")]
+        public async Task<JsonResult> Delete(Guid id)
         {
-
+            await _unitOfWork.Ganres.DeleteAsync(id);
+            return new JsonResult("Deleted Successfully");
         }
     }
 }
