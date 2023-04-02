@@ -17,8 +17,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetCinemaCrew")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetCinemaCrew()
         {
             var cinemaCrews = await _unitOfWork.CinemaCrews.GetAllAsync();
             cinemaCrews.ToList();
@@ -37,8 +36,7 @@ namespace YourMovies.WebApi.Controllers
             return Ok(cinemaCrews);
         }
 
-        [HttpGet]
-        [Route("GetCinemaCrew/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCinemaCrewById(Guid id)
         {
             var existingCinemaCrew = await _unitOfWork.CinemaCrews.GetByIdAsync(id);
@@ -46,8 +44,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddCinemaCrew")]
-        public async Task<IActionResult> Post(CinemaCrew cinemaCrew)
+        public async Task<IActionResult> AddCinemaCrew([FromBody]CinemaCrew cinemaCrew)
         {
             var person = await _unitOfWork.Persons.GetByIdAsync(cinemaCrew.PersonId);
             var department = await _unitOfWork.Departments.GetByIdAsync(cinemaCrew.DepartmentId);
@@ -65,8 +62,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateCinemaCrew")]
-        public async Task<IActionResult> Put(CinemaCrew cinemaCrew)
+        public async Task<IActionResult> UpdateCinemaCrew([FromBody]CinemaCrew cinemaCrew)
         {
             var existingCinemaCrew = await _unitOfWork.CinemaCrews.GetByIdAsync(cinemaCrew.Id);
 
@@ -84,9 +80,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeleteCinemaCrew/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeleteCinemaCrew(Guid id)
         {
             await _unitOfWork.CinemaCrews.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");

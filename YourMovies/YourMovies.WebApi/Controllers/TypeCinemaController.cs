@@ -16,14 +16,12 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetTypeCinema")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetTypeCinema()
         {
             return Ok(await _unitOfWork.TypeCinema.GetAllAsync());
         }
 
-        [HttpGet]
-        [Route("GetTypeCinema/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetTypeCinemaById(Guid id)
         {
             var existingTypeCinema = await _unitOfWork.TypeCinema.GetByIdAsync(id);
@@ -31,8 +29,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddTypeCinema")]
-        public async Task<IActionResult> Post(TypeCinema typeCinema)
+        public async Task<IActionResult> AddTypeCinema([FromBody]TypeCinema typeCinema)
         {
             var result = await _unitOfWork.TypeCinema.CreateAsync(typeCinema);
 
@@ -42,8 +39,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateTypeCinema")]
-        public async Task<IActionResult> Put(TypeCinema typeCinema)
+        public async Task<IActionResult> UpdateTypeCinema([FromBody] TypeCinema typeCinema)
         {
             var existingTypeCinema = await _unitOfWork.TypeCinema.GetByIdAsync(typeCinema.Id);
 
@@ -60,9 +56,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeleteTypeCinema/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeleteTypeCinema(Guid id)
         {
             await _unitOfWork.TypeCinema.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");

@@ -16,14 +16,12 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetProductionCompany")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetProductionCompany()
         {
             return Ok(await _unitOfWork.ProductionCompanys.GetAllAsync());
         }
 
-        [HttpGet]
-        [Route("GetProductionCompany/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetProductionCompanyById(Guid id)
         {
             var existingProductionCompany = await _unitOfWork.ProductionCompanys.GetByIdAsync(id);
@@ -31,8 +29,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddProductionCompany")]
-        public async Task<IActionResult> Post(ProductionCompany productionCompany)
+        public async Task<IActionResult> AddProductionCompany([FromBody]ProductionCompany productionCompany)
         {
             var result = await _unitOfWork.ProductionCompanys.CreateAsync(productionCompany);
 
@@ -42,8 +39,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateProductionCompany")]
-        public async Task<IActionResult> Put(ProductionCompany productionCompany)
+        public async Task<IActionResult> UpdateProductionCompany([FromBody]ProductionCompany productionCompany)
         {
             var existingProductionCompany = await _unitOfWork.ProductionCompanys.GetByIdAsync(productionCompany.Id);
 
@@ -60,9 +56,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeleteProductionCompany/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeleteProductionCompany(Guid id)
         {
             await _unitOfWork.ProductionCompanys.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");

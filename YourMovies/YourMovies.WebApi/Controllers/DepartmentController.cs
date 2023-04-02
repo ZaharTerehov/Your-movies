@@ -17,14 +17,12 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetDepartment")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetDepartment()
         {
             return Ok(await _unitOfWork.Departments.GetAllAsync());
         }
 
-        [HttpGet]
-        [Route("GetDepartment/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetDepartmentById(Guid id)
         {
             var existingDepartment = await _unitOfWork.Departments.GetByIdAsync(id);
@@ -32,8 +30,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddDepartment")]
-        public async Task<IActionResult> Post(Department department)
+        public async Task<IActionResult> AddDepartment([FromBody]Department department)
         {
             var result = await _unitOfWork.Departments.CreateAsync(department);
 
@@ -43,8 +40,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateDepartment")]
-        public async Task<IActionResult> Put(Department department)
+        public async Task<IActionResult> UpdateDepartment([FromBody]Department department)
         {
             var existingDepartment = await _unitOfWork.Departments.GetByIdAsync(department.Id);
 
@@ -61,9 +57,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeleteDepartment/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeleteDepartment(Guid id)
         {
             await _unitOfWork.Departments.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");

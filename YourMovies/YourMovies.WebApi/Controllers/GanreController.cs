@@ -16,14 +16,12 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetGanre")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetGanre()
         {
             return Ok(await _unitOfWork.Ganres.GetAllAsync());
         }
 
-        [HttpGet]
-        [Route("GetGanre/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetGanreById(Guid id)
         {
             var existingGanre = await _unitOfWork.Ganres.GetByIdAsync(id);
@@ -31,8 +29,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddGanre")]
-        public async Task<IActionResult> Post(Ganre ganre)
+        public async Task<IActionResult> AddGanre([FromBody]Ganre ganre)
         {
             var result = await _unitOfWork.Ganres.CreateAsync(ganre);
 
@@ -42,8 +39,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateGanre")]
-        public async Task<IActionResult> Put(Ganre ganre)
+        public async Task<IActionResult> UpdateGanre([FromBody] Ganre ganre)
         {
             var existingGanre = await _unitOfWork.Ganres.GetByIdAsync(ganre.Id);
 
@@ -60,9 +56,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeleteGanre/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeleteGanre(Guid id)
         {
             await _unitOfWork.Ganres.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");

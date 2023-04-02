@@ -18,14 +18,12 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetPerson")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetPerson()
         {
             return Ok(await _unitOfWork.Persons.GetAllAsync());
         }
 
-        [HttpGet]
-        [Route("GetPerson/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetPersonById(Guid id)
         {
             var existingPerson = await _unitOfWork.Persons.GetByIdAsync(id);
@@ -33,8 +31,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddPerson")]
-        public async Task<IActionResult> Post(Person person)
+        public async Task<IActionResult> AddPerson([FromBody]Person person)
         {
             var result = await _unitOfWork.Persons.CreateAsync(person);
 
@@ -44,8 +41,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdatePerson")]
-        public async Task<IActionResult> Put(Person person)
+        public async Task<IActionResult> UpdatePerson([FromBody]Person person)
         {
             var existingPerson = await _unitOfWork.Persons.GetByIdAsync(person.Id);
 
@@ -62,9 +58,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeletePerson/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeletePerson(Guid id)
         {
             await _unitOfWork.Persons.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");

@@ -17,8 +17,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetCinemaCast")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetCinemaCast()
         {
             var cinemaCasts = await _unitOfWork.CinemaCasts.GetAllAsync();
             cinemaCasts.ToList();
@@ -34,8 +33,7 @@ namespace YourMovies.WebApi.Controllers
             return Ok(cinemaCasts);
         }
 
-        [HttpGet]
-        [Route("GetCinemaCast/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCinemaCastById(Guid id)
         {
             var existingCinemaCast = await _unitOfWork.CinemaCasts.GetByIdAsync(id);
@@ -43,8 +41,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddCinemaCast")]
-        public async Task<IActionResult> Post(CinemaCast cinemaCast)
+        public async Task<IActionResult> AddCinemaCast([FromBody] CinemaCast cinemaCast)
         {
             var person = await _unitOfWork.Persons.GetByIdAsync(cinemaCast.PersonId);
             var cinema = await _unitOfWork.Cinema.GetByIdAsync(cinemaCast.CinemaId);
@@ -60,8 +57,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateCinemaCast")]
-        public async Task<IActionResult> Put(CinemaCast cinemaCast)
+        public async Task<IActionResult> UpdateCinemaCast([FromBody] CinemaCast cinemaCast)
         {
             var existingCinemaCast = await _unitOfWork.CinemaCasts.GetByIdAsync(cinemaCast.Id);
 
@@ -80,9 +76,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeleteCinemaCast/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeleteCinemaCast(Guid id)
         {
             await _unitOfWork.CinemaCasts.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");

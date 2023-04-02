@@ -16,14 +16,12 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetCountry")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetCountry()
         {
             return Ok(await _unitOfWork.Countrys.GetAllAsync());
         }
 
-        [HttpGet]
-        [Route("GetCountry/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCountryById(Guid id)
         {
             var existingGanre = await _unitOfWork.Countrys.GetByIdAsync(id);
@@ -31,8 +29,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddCountry")]
-        public async Task<IActionResult> Post(Country country)
+        public async Task<IActionResult> AddCountry([FromBody]Country country)
         {
             var result = await _unitOfWork.Countrys.CreateAsync(country);
 
@@ -42,8 +39,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateCountry")]
-        public async Task<IActionResult> Put(Country country)
+        public async Task<IActionResult> UpdateCountry([FromBody]Country country)
         {
             var existingCountry = await _unitOfWork.Countrys.GetByIdAsync(country.Id);
 
@@ -60,9 +56,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeleteCountry/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeleteCountry(Guid id)
         {
             await _unitOfWork.Countrys.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");

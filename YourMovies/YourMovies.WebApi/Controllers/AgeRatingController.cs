@@ -16,14 +16,12 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetAgeRating")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAgeRating()
         {
             return Ok(await _unitOfWork.AgeRatings.GetAllAsync());
         }
 
-        [HttpGet]
-        [Route("GetAgeRating/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetAgeRatingById(Guid id)
         {
             var existingAgeRating = await _unitOfWork.AgeRatings.GetByIdAsync(id);
@@ -31,8 +29,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddAgeRating")]
-        public async Task<IActionResult> Post(AgeRating ageRating)
+        public async Task<IActionResult> AddAgeRating([FromBody]AgeRating ageRating)
         {
             var result = await _unitOfWork.AgeRatings.CreateAsync(ageRating);
 
@@ -42,8 +39,7 @@ namespace YourMovies.WebApi.Controllers
         }
 
         [HttpPut]
-        [Route("UpdateAgeRating")]
-        public async Task<IActionResult> Put(AgeRating ageRating)
+        public async Task<IActionResult> UpdateAgeRating([FromBody]AgeRating ageRating)
         {
             var existingAgeRating = await _unitOfWork.AgeRatings.GetByIdAsync(ageRating.Id);
 
@@ -60,9 +56,8 @@ namespace YourMovies.WebApi.Controllers
             return Ok("Update successfuly");
         }
 
-        [HttpDelete]
-        [Route("DeleteAgeRating/{id}")]
-        public async Task<JsonResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public async Task<JsonResult> DeleteAgeRating(Guid id)
         {
             await _unitOfWork.AgeRatings.DeleteAsync(id);
             return new JsonResult("Deleted Successfully");
