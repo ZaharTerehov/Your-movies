@@ -1,3 +1,4 @@
+using Serilog;
 using YourMovies.WebApi.Configuration;
 using YourMovies.WebApi.Extentions;
 
@@ -24,6 +25,12 @@ builder.Services.AddCors(options =>
 });
 
 YourMovies.Infrastructure.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
+
+#region
+var logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+#endregion
 
 builder.Services.AddCoreServices();
 
