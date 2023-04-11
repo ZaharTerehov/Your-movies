@@ -1,44 +1,42 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
+using YourMovies.Domain.Models;
 
 namespace YourMovies.WebApi.Middleware
 {
-    public class ExceptionMiddleware
+    public sealed class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionMiddleware> _logger;
+        private readonly ILogger _logger;
 
-        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
+        public ExceptionMiddleware(RequestDelegate next, ILogger logger)
         {
             _next = next;
             _logger = logger;
         }
 
-        public async Task Invoke(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
-                await _next.Invoke(httpContext);
+                await _next(httpContext);
             }
             catch (Exception ex)
             {
-                _logger.LogError("Unhandled exception ...", ex);
-                await HandleExceptionMessageAsync(httpContext, ex).ConfigureAwait(false);
+                _logger.LogError($"Something went wrong: {ex}");
+                await HandleExceptionAsync(httpContext, ex);
             }
         }
 
-        private static Task HandleExceptionMessageAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
-            var statusCode = (int)HttpStatusCode.InternalServerError;
-            var result = JsonConvert.SerializeObject(new
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            await context.Response.WriteAsync(new ErrorDetails()
             {
-                StatusCode = statusCode,
-                ErrorMessage = exception.Message
-            });
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = statusCode;
-            return context.Response.WriteAsync(result);
+                StatusCode = context.Response.StatusCode,
+                Message = "Internal Server Error from the custom middleware."
+            }.ToString());
         }
     }
 }
