@@ -7,75 +7,75 @@ export const EndPoints = {
 }
 
 export const EndPointsGanre = {
-    getAll: 'Ganre/GetGanre/',
-    getById: 'Ganre/GetGanre/',
-    create: 'Ganre/AddGanre',
-    delete: 'Ganre/DeleteGanre/',
-    update: 'Ganre/UpdateGanre',
+    getAll: 'Ganre/',
+    getById: 'Ganre/',
+    create: 'Ganre/',
+    delete: 'Ganre/',
+    update: 'Ganre/',
 }
 
 export const EndPointsCountry = {
-    getAll: 'Country/GetCountry/',
-    getById: 'Country/GetCountry/',
-    create: 'Country/AddCountry',
-    delete: 'Country/DeleteCountry/',
-    update: 'Country/UpdateCountry',
+    getAll: 'Country/',
+    getById: 'Country/',
+    create: 'Country/',
+    delete: 'Country/',
+    update: 'Country/',
 }
 
 export const EndPointsTypeCinema = {
-    getAll: 'TypeCinema/GetTypeCinema/',
-    getById: 'TypeCinema/GetTypeCinema/',
-    create: 'TypeCinema/AddTypeCinema',
-    delete: 'TypeCinema/DeleteTypeCinema/',
-    update: 'TypeCinema/UpdateTypeCinema',
+    getAll: 'TypeCinema/',
+    getById: 'TypeCinema/',
+    create: 'TypeCinema/',
+    delete: 'TypeCinema/',
+    update: 'TypeCinema/',
 }
 
 export const EndPointsPerson = {
-    getAll: 'Person/GetPerson/',
-    getById: 'Person/GetPerson/',
-    create: 'Person/AddPerson',
-    delete: 'Person/DeletePerson/',
-    update: 'Person/UpdatePerson',
+    getAll: 'Person/',
+    getById: 'Person/',
+    create: 'Person/',
+    delete: 'Person/',
+    update: 'Person/',
 }
 
 export const EndPointsProductionCompany = {
-    getAll: 'ProductionCompany/GetProductionCompany/',
-    getById: 'ProductionCompany/GetProductionCompany/',
-    create: 'ProductionCompany/AddProductionCompany',
-    delete: 'ProductionCompany/DeleteProductionCompany/',
-    update: 'ProductionCompany/UpdateProductionCompany',
+    getAll: 'ProductionCompany/',
+    getById: 'ProductionCompany/',
+    create: 'ProductionCompany/',
+    delete: 'ProductionCompany/',
+    update: 'ProductionCompany/',
 }
 
 export const EndPointsDepartment = {
-    getAll: 'Department/GetDepartment/',
-    getById: 'Department/GetDepartment/',
-    create: 'Department/AddDepartment',
-    delete: 'Department/DeleteDepartment/',
-    update: 'Department/UpdateDepartment',
+    getAll: 'Department/',
+    getById: 'Department/',
+    create: 'Department/',
+    delete: 'Department/',
+    update: 'Department/',
 }
 
 export const EndPointsAgeRating = {
-    getAll: 'AgeRating/GetAgeRating/',
-    getById: 'AgeRating/GetAgeRating/',
-    create: 'AgeRating/AddAgeRating',
-    delete: 'AgeRating/DeleteAgeRating/',
-    update: 'AgeRating/UpdateAgeRating',
+    getAll: 'AgeRating/',
+    getById: 'AgeRating/',
+    create: 'AgeRating/',
+    delete: 'AgeRating/',
+    update: 'AgeRating/',
 }
 
 export const EndPointsCinemaCast = {
-    getAll: 'CinemaCast/GetCinemaCast/',
-    getById: 'CinemaCast/GetCinemaCast/',
-    create: 'CinemaCast/AddCinemaCast',
-    delete: 'CinemaCast/DeleteCinemaCast/',
-    update: 'CinemaCast/UpdateCinemaCast',
+    getAll: 'CinemaCast/',
+    getById: 'CinemaCast/',
+    create: 'CinemaCast/',
+    delete: 'CinemaCast/',
+    update: 'CinemaCast/',
 }
 
 export const EndPointsCinemaCrew = {
-    getAll: 'CinemaCrew/GetCinemaCrew/',
-    getById: 'CinemaCrew/GetCinemaCrew/',
-    create: 'CinemaCrew/AddCinemaCrew',
-    delete: 'CinemaCrew/DeleteCinemaCrew/',
-    update: 'CinemaCrew/UpdateCinemaCrew',
+    getAll: 'CinemaCrew/',
+    getById: 'CinemaCrew/',
+    create: 'CinemaCrew/',
+    delete: 'CinemaCrew/',
+    update: 'CinemaCrew/',
 }
 
 export const EndPointsCinema = {
