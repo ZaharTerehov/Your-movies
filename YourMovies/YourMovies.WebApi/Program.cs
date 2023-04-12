@@ -35,9 +35,7 @@ builder.Logging.AddSerilog(logger);
 builder.Services.AddCoreServices();
 
 //AutoMapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-//builder.Services.UseCu
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Add services to the container.
 
