@@ -24,11 +24,16 @@ namespace YourMovies.WebApi.Controllers.User
         public string LocationAccessToken { get; init; } = "YourMovies.Application.AT";
         public string LocationRefreshToken { get; init; } = "YourMovies.Application.RT";
 
-        public RegisterController(IUnitOfWork unitOfWork, IGenerateAccessTokenService generateAccessToken, IMapper mapper)
+        public RegisterController(IUnitOfWork unitOfWork, IMapper mapper, 
+            IGenerateAccessTokenService generateAccessToken, IGenerateConfirmEmailTokenService generateConfirmEmailToken,
+            IEmailSenderService emailSender)
         {
             _unitOfWork = unitOfWork;
-            _generateAccessToken = generateAccessToken;
             _mapper = mapper;
+
+            _generateAccessToken = generateAccessToken;
+            _generateConfirmEmailToken = generateConfirmEmailToken;
+            _emailSender = emailSender;
         }
 
         [HttpPost]
@@ -63,7 +68,7 @@ namespace YourMovies.WebApi.Controllers.User
         {
             var confirmEmailToken = await _generateConfirmEmailToken.GenerateConfirmEmailToken(user);
 
-            var validEmailToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(confirmEmailToken.Token));
+            var validEmailToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(confirmEmailToken));
 
             return ($"https://localhost:7227/Account/ConfirmEmail?userid={user.Id}&token={validEmailToken}", validEmailToken);
         }
