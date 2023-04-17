@@ -2,11 +2,13 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Collections.Generic;
 using System.Text;
 using YourMovies.Application.Contracts.User;
 using YourMovies.Application.Interfaces;
 using YourMovies.Application.Interfaces.Account;
 using YourMovies.Application.Interfaces.Account.Token;
+using YourMovies.Domain.Entities;
 
 namespace YourMovies.WebApi.Controllers.User
 {
@@ -40,13 +42,13 @@ namespace YourMovies.WebApi.Controllers.User
         public async Task<IActionResult> Register([FromBody] CreateUserRequest request)
         {
             //var captchaValidation = await СheckСaptchaTokenForValidity(model.ReCaptcha);
-            
+
             //if (captchaValidation.StatusCode != StatusCode.OK)
             //    return captchaValidation;
-            
-            var users = await _unitOfWork.Users.GetAllAsync();
 
-            if (users.Select(_ => _.Email == request.Email) == null)
+            List<Domain.Entities.User>? users = await _unitOfWork.Users.GetAllAsync() as List<Domain.Entities.User>;
+
+            if (users.Find(_ => _.Email == request.Email) != null)
                 return BadRequest("There is already a user with this login");
             
             var newUser = _mapper.Map<Domain.Entities.User>(request);
