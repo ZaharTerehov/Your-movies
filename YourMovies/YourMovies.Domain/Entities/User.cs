@@ -1,12 +1,18 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using YourMovies.Domain.Enums;
 
 namespace YourMovies.Domain.Entities
 {
     public sealed class User : Entity
     {
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
         public string Email { get; set; }
 
+        [Required]
+        [StringLength(15, MinimumLength = 5, ErrorMessage = "Remark must have min length of 5 and max Length of 15")]
         public string Password { get; set; }
 
         public DateTime RegistrationDate { get; set; } = DateTime.Now;
