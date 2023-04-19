@@ -1,4 +1,5 @@
 using Serilog;
+using YourMovies.Domain.Models;
 using YourMovies.WebApi.Configuration;
 using YourMovies.WebApi.Extentions;
 
@@ -46,6 +47,17 @@ builder.Services.AddSwaggerGen(swaggerGenOptions =>
 {
     swaggerGenOptions.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "YourMovies Project", Version = "v1" });
 });
+
+//JwtToken
+var sectionJwtSettings = builder.Configuration.GetSection("JwtSettings");
+var options = sectionJwtSettings.Get<JwtOptions>();
+
+var jwtOptions = new JwtOptions(options.SigningKey, options.Issuer, options.Audience,
+    options.AccessTokenExpiryInMinutes, options.RefreshTokenExpiryInMinutes);
+
+builder.Services.AddJwtAuthentication(jwtOptions);
+
+builder.Services.Configure<JwtOptions>(sectionJwtSettings);
 
 var app = builder.Build();
 
