@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Net;
+﻿using System.Net;
 using YourMovies.Domain.Models;
 
 namespace YourMovies.WebApi.Middleware
@@ -9,7 +8,7 @@ namespace YourMovies.WebApi.Middleware
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        public ExceptionMiddleware(RequestDelegate next, ILogger logger)
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
             _logger = logger;
@@ -32,6 +31,7 @@ namespace YourMovies.WebApi.Middleware
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
             await context.Response.WriteAsync(new ErrorDetails()
             {
                 StatusCode = context.Response.StatusCode,

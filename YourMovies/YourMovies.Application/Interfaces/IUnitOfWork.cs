@@ -1,7 +1,7 @@
 ﻿
 using YourMovies.Domain.Entities;
 
-namespace YourMovies.Domain.Interfaces
+namespace YourMovies.Application.Interfaces
 {
     public interface IUnitOfWork
     {
@@ -15,5 +15,6 @@ namespace YourMovies.Domain.Interfaces
         IRepository<Person> Persons { get; }
         IRepository<ProductionCompany> ProductionCompanys { get; }
         IRepository<TypeCinema> TypeCinema { get; }
+        IRepository<User> Users { get; }
     }
 }

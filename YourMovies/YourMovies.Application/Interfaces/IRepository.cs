@@ -1,7 +1,7 @@
 ﻿
 using System.Linq.Expressions;
 
-namespace YourMovies.Domain.Interfaces
+namespace YourMovies.Application.Interfaces
 {
     public interface IRepository<T> where T : class
     {

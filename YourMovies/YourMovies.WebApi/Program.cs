@@ -1,4 +1,5 @@
 using Serilog;
+using YourMovies.Domain.Models;
 using YourMovies.WebApi.Configuration;
 using YourMovies.WebApi.Extentions;
 
@@ -35,9 +36,7 @@ builder.Logging.AddSerilog(logger);
 builder.Services.AddCoreServices();
 
 //AutoMapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-//builder.Services.UseCu
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Add services to the container.
 
@@ -48,6 +47,17 @@ builder.Services.AddSwaggerGen(swaggerGenOptions =>
 {
     swaggerGenOptions.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "YourMovies Project", Version = "v1" });
 });
+
+//JwtToken
+var sectionJwtSettings = builder.Configuration.GetSection("JwtSettings");
+var options = sectionJwtSettings.Get<JwtOptions>();
+
+var jwtOptions = new JwtOptions(options.SigningKey, options.Issuer, options.Audience,
+    options.AccessTokenExpiryInMinutes, options.RefreshTokenExpiryInMinutes);
+
+builder.Services.AddJwtAuthentication(jwtOptions);
+
+builder.Services.Configure<JwtOptions>(sectionJwtSettings);
 
 var app = builder.Build();
 

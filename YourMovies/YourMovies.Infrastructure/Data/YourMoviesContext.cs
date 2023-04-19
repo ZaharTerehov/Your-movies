@@ -16,6 +16,7 @@ namespace YourMovies.Infrastructure.Data
         public DbSet<Person> Person { get; set; }
         public DbSet<ProductionCompany> ProductionCompany { get; set; }
         public DbSet<TypeCinema> TypeCinema { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public YourMoviesContext(DbContextOptions<YourMoviesContext> options) : base(options) { }
     }

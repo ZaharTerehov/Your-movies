@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\YourMovies.Application\YourMovies.Application.csproj" />
     <ProjectReference Include="..\YourMovies.Domain\YourMovies.Domain.csproj" />
   </ItemGroup>
 

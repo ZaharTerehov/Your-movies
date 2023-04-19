@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YourMovies.Domain.Entities;
-using YourMovies.Domain.Interfaces;
+using YourMovies.Application.Interfaces;
 
 namespace YourMovies.WebApi.Controllers
 {
