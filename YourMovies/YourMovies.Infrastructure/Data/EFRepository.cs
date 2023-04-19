@@ -1,8 +1,8 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using YourMovies.Application.Interfaces;
 using YourMovies.Domain.Entities;
-using YourMovies.Domain.Interfaces;
 using YourMovies.Infrastructure.Data.DBExtentions;
 
 namespace YourMovies.Infrastructure.Data
