@@ -86,6 +86,10 @@ export const EndPointsCinema = {
     update: 'Cinema/UpdateCinema',
 }
 
+export const EndPointsUser = {
+    create: 'Register/',
+}
+
 export const createApiEndpoint = endpoint => {
     let url = BaseUrl + endpoint;
     return {
