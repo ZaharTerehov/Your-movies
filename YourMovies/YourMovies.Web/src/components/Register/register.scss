@@ -11,6 +11,13 @@
     background-size: cover;
     position: relative;
 
+    .toast-message {
+        background-color: #000000;
+        color: #FFFFFF;
+        font-size: 20px;
+        padding: 1rem 0.5rem;
+    }
+
     .top {
         .wrapper {
             padding: 20px 50px;
