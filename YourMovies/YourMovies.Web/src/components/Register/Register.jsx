@@ -1,22 +1,45 @@
 import {React, useState, useRef} from 'react'
+import { createApiEndpoint, EndPointsUser } from "../../api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./register.scss"
+import { useReducer } from 'react';
 
 function Register() {
   const [email, setEmail] = useState('')
+  const [emailValue, setEmailValue] = useState('')
   const [password, setPassword] = useState('')
-  const emailRef = useRef()
-  const passwordRef = useRef()
+  const emailRef = useRef('')
+
+  const successfulRegistration = () => toast.success("You have successfully registered. Now verify your email", {className: "toast-message"});
 
   const handleStart = () => {
     setEmail(emailRef.current.value)
   }
 
-  const handleFinish = () => {
-    setPassword(passwordRef.current.value)
-  }
+  const handleRegisterUser = () => {
+    const data = {
+      "email": email,
+      "password": password
+    }
+    
+    createApiEndpoint(EndPointsUser.create).create(data)
+    .then((result) => {
+      successfulRegistration()
+      console.log(result)
+    }).catch((error) => {
+      toast.error(error.response.data, {className: "toast-message"});
+      console.log(error)
+    })
+
+    setEmailValue("")
+    setEmail("")
+    setPassword("")  
+  };
 
   return (
     <div className='register'>
+      <ToastContainer position="top-center"/>
       <div className='top'>
         <div className='wrapper'>
           <img className='logo'
@@ -33,14 +56,16 @@ function Register() {
         </p>
         {!email ?(
           <div className="input">
-            <input type="email" placeholder='email address' ref={emailRef}/>
+            <input type="email" placeholder='email address' value={emailValue} 
+            onChange={(emailValue) => setEmailValue(emailValue.target.value)} ref={emailRef}/>
             <button className='registerButton' onClick={handleStart}>Register</button>
           </div>
         ) : (
-          <form className="input">
-            <input type="password" placeholder='password' ref={passwordRef}/>
-            <button className='registerButton' onClick={handleFinish}>Start</button>
-          </form>
+          <div className="input">
+            <input type="password" placeholder='password' value={password} 
+            onChange={(password) => setPassword(password.target.value)}/>
+            <button className='registerButton' onClick={() => handleRegisterUser()}>Start</button>
+          </div>
         )}
 
       </div>
