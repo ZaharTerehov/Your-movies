@@ -6,6 +6,6 @@ namespace YourMovies.Application.Interfaces.Account.Token
 {
     public interface IGenerateAccessTokenService
     {
-        Task<JwtTokenResult> GenerateAccessToken(User user);
+        Task<TokenResult> GenerateAccessToken(User user);
     }
 }

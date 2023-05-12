@@ -18,7 +18,7 @@ namespace YourMovies.Application.Services.Account.Token
             _jwtOptions = jwtOptions;
         }
 
-        public async Task<JwtTokenResult> GenerateAccessToken(User user)
+        public async Task<TokenResult> GenerateAccessToken(User user)
         {
             var expiration = DateTime.Now.AddMinutes(_jwtOptions.AccessTokenExpiryInMinutes);
 
@@ -45,10 +45,7 @@ namespace YourMovies.Application.Services.Account.Token
             var accessToken = new JwtSecurityTokenHandler()
                 .WriteToken(jwtToken);
 
-            return new JwtTokenResult()
-            {
-                AccessTokenResult = new TokenResult(accessToken, expiration)
-            };
+            return new TokenResult(accessToken, expiration);
         }
     }
 }
