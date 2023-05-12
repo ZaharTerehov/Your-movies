@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using YourMovies.Domain.Entities;
 using YourMovies.Application.Interfaces;
