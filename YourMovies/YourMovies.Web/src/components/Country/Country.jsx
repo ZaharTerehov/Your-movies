@@ -110,6 +110,7 @@ const Country = () => {
 
   return (
     <Fragment>
+      <div className="h1 text-center">Country</div>
       <ToastContainer/>
       <Container>
         <Row>

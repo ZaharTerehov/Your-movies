@@ -35,6 +35,7 @@ const Navbar = () => {
                 <Search className='icon'/>
                 <span>KID</span>
                 <CustomLink to="/register"><span>Register</span></CustomLink>
+                <CustomLink to="/login"><span>Login</span></CustomLink>
                 <Bell className='icon'/>
                 <img 
                     src='https://lh3.googleusercontent.com/ogw/AAEL6sgHN7K3RnP_cr0hGD2YDrrK72PyCGNKhSmSo8i8QQ=s32-c-mo'

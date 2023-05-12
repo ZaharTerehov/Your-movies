@@ -110,6 +110,7 @@ const Ganre = () => {
 
   return (
     <Fragment>
+      <div className="h1 text-center">Ganre</div>
       <ToastContainer/>
       <Container>
         <Row>

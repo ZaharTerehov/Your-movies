@@ -134,6 +134,7 @@ function CinemaCast() {
   
     return (
       <Fragment>
+        <div className="h1 text-center">Cinema cast</div>
         <ToastContainer/>
         <Container>
           <Row>

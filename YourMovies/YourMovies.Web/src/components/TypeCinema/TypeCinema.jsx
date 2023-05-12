@@ -103,6 +103,7 @@ function TypeCinema() {
   
     return (
       <Fragment>
+        <div className="h1 text-center">Type cinema</div>
         <ToastContainer/>
         <Container>
           <Row>

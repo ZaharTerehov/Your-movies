@@ -3,7 +3,6 @@ import { createApiEndpoint, EndPointsUser } from "../../api";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./register.scss"
-import { useReducer } from 'react';
 
 function Register() {
   const [email, setEmail] = useState('')
