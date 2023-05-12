@@ -12,7 +12,7 @@ namespace YourMovies.Domain.Entities
         public string Email { get; set; }
 
         [Required]
-        [StringLength(15, MinimumLength = 5, ErrorMessage = "Remark must have min length of 5 and max Length of 15")]
+        [MinLength(5, ErrorMessage = "Remark must have min length of 5")]
         public string Password { get; set; }
 
         public DateTime RegistrationDate { get; set; } = DateTime.Now;
