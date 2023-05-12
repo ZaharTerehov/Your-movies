@@ -11,7 +11,7 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "yourmovies.web", "yourMovie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourMovies.WebApi", "YourMovies.WebApi\YourMovies.WebApi.csproj", "{EBF35D48-D9D8-4EAA-8F1A-5123FC1C4C36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourMovies.Application", "YourMovies.Application\YourMovies.Application.csproj", "{CE0AFEE0-81F4-436C-9336-01512406F40B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourMovies.Application", "YourMovies.Application\YourMovies.Application.csproj", "{CE0AFEE0-81F4-436C-9336-01512406F40B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
