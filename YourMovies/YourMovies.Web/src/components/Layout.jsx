@@ -14,6 +14,7 @@ import CinemaCrew from './CinemaCrew/CinemaCrew';
 import Cinema from './Cinema/Cinema';
 import Home from './Home/Home';
 import Register from './Register/Register';
+import Login from './Login/Login';
 
 const Layout = () => {
     return(
@@ -22,6 +23,7 @@ const Layout = () => {
             <Routes>
             <Route path="/homePage" element={<Home/>}/>
             <Route path="/register" element={<Register/>}/>
+            <Route path="/login" element={<Login/>}/>
             </Routes>
             <div className='container'> 
                 <Routes>                    

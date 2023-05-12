@@ -146,6 +146,7 @@ function CinemaCrew() {
   
     return (
       <Fragment>
+        <div className="h1 text-center">Cinema crew</div>
         <ToastContainer/>
         <Container>
           <Row>

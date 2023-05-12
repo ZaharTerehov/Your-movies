@@ -103,6 +103,7 @@ function Department() {
   
     return (
       <Fragment>
+        <div className="h1 text-center">Department</div>
         <ToastContainer/>
         <Container>
           <Row>

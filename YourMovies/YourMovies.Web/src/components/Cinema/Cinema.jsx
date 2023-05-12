@@ -8,13 +8,33 @@ import Col from "react-bootstrap/Col";
 import Container from 'react-bootstrap/Container';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createApiEndpoint, EndPointsCinemaCrew, EndPointsPerson, EndPointsDepartment, EndPointsAgeRating, EndPointsTypeCinema, EndPointsProductionCompany, EndPointsGanre, EndPointsCountry, EndPointsCinemaCast, EndPointsCinema } from "../../api";
+import { createApiEndpoint, EndPointsCinemaCrew, EndPointsAgeRating, EndPointsTypeCinema, EndPointsProductionCompany, EndPointsGanre, EndPointsCountry, EndPointsCinemaCast, EndPointsCinema } from "../../api";
+import "./cinema.scss"
 
 function Cinema() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [drag, setDrag] = useState(false)
+
+    function dragStartHandler(e) {
+      e.preventDefault()
+      setDrag(true)
+    }
+
+    function dragLeaveHandler(e) {
+      e.preventDefault()
+      setDrag(false)
+    }
+
+    function onDropHandler(e) {
+      e.preventDefault()
+      let files = [...e.dataTransfer.files]
+      console.log(files)
+      setDrag(false)
+    }
   
     const[ageRating, setAgeRating] = useState('');
     const[typeCinema, setTypeCinema] = useState('');
@@ -42,10 +62,6 @@ function Cinema() {
     const[editReleaseDate, setEditReleaseDate] = useState('');
     const[editMainImage, setEditMainImage] = useState('');
     const[editFilmBudget, setEditFilmBudget] = useState('');
-
-    // const[editPerson, setEditPerson] = useState(0);
-    // const[editDepartment, setEditDepartment] = useState(0);  
-    // const[editJob, setEditJob] = useState('');
   
     const[data, setData] = useState([]);
 
@@ -56,9 +72,6 @@ function Cinema() {
     const[dataProductionCompany, setDataProductionCompany] = useState([]);
     const[dataCinemaCast, setDataCinemaCast] = useState([]);
     const[dataCinemaCrew, setDataCinemaCrew] = useState([]);
-
-    // const[dataPerson, setDataPerson] = useState([]);
-    // const[dataDepartment, setDataDepartment] = useState([]);
   
     useEffect(() => {
         getData();
@@ -279,6 +292,7 @@ function Cinema() {
   
     return (
       <Fragment>
+        <div className="h1 text-center">Cinema</div>
         <ToastContainer/>
         <Container>
           <Row>
@@ -383,6 +397,23 @@ function Cinema() {
             <Col>
               <button className="btn btn-primary" onClick={() => handleSave()}>Submit</button>
             </Col>
+            </Row>
+            <Row>
+              <Col>
+              {drag
+                ? <div className="drop-area"
+                    onDragStart={e => dragStartHandler(e)}
+                    onDragLeave={e => dragLeaveHandler(e)}
+                    onDragOver={e => dragStartHandler(e)}
+                    onDrop={e => onDropHandler(e)}
+                    >Release the file</div>
+                : <div className="drop-area" 
+                    onDragStart={e => dragStartHandler(e)}
+                    onDragLeave={e => dragLeaveHandler(e)}
+                    onDragOver={e => dragStartHandler(e)}
+                    >Drag file</div>
+              }
+              </Col>
             </Row>
         </Container>
         <br></br>

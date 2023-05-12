@@ -110,6 +110,7 @@ function Person() {
   
     return (
       <Fragment>
+        <div className="h1 text-center">Person</div>
         <ToastContainer/>
         <Container>
           <Row>

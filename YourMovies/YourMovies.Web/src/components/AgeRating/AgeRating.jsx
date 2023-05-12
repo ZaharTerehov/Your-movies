@@ -117,6 +117,7 @@ function AgeRating() {
   
     return (
       <Fragment>
+        <div className="h1 text-center">Age Rating</div>
         <ToastContainer/>
         <Container>
           <Row>
